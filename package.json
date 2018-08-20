@@ -1,0 +1,12 @@
+{
+  "name": "hakka-dict-toolkit",
+  "version": "0.0.1",
+  "description": "A toolkit for https://hakka.dict.edu.tw/hakkadict/index.htm",
+  "main": "index.js",
+  "author": "Hsu Karinsu<m80126colin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
