@@ -14,9 +14,7 @@ const read_entry = (idx : number) => {
   return request(options)
     .then(image_filter)
     .then(character_filter)
-    .then(body => {
-      console.log(entry(body))
-    })
+    .then(body => entry(body))
 }
 
 class HakkaDictToolkitAPI {

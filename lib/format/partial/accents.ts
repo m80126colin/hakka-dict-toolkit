@@ -19,7 +19,6 @@ const pattern = _.chain(list).map(o => o.tag).join('').value()
 
 const formatter = (text : string) : Sound[] => {
   const temp = text.match(new RegExp(`([${pattern}]|[0-9a-zA-Z ]+)`, 'ug'))
-  console.log(temp)
   let state : { vunpag? : number, accent? : number } = {}
   return _.chain(temp)
     .map(value => _.chain(value)

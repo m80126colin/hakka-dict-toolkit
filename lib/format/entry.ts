@@ -92,7 +92,6 @@ export default (context : string) : CharacterEntry | WordEntry => {
       extract($('tr > td', row)[0]),
       _.flatMap($('tr', $(row)), data => extract(data)))
   })
-  console.log(data)
   /** BasicEntry */
   const basic = makeBasicEntry(data)
   /** make CharacterEntry */
