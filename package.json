@@ -2,11 +2,22 @@
   "name": "hakka-dict-toolkit",
   "version": "0.0.1",
   "description": "A toolkit for https://hakka.dict.edu.tw/hakkadict/index.htm",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Hsu Karinsu<m80126colin@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc --declaration"
+  },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.10",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.9",
+    "@types/lodash": "^4.14.116",
+    "@types/node": "^10.9.2",
+    "@types/request-promise": "^4.1.42"
   }
 }
