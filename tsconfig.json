@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
+    "rootDir": "./lib",
+    "outDir": "./build/lib",
+    "watch": false
+  },
+  "include": [
+    "./lib/**/*"
+  ]
+}
