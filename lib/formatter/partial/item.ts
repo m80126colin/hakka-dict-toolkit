@@ -5,7 +5,12 @@ import { EntryItem }                    from '../_type';
 import { ExtractData, ExtractDataType } from '../../extracter/_type';
 
 const pattern = new RegExp('【([^】]+)】', 'u')
-
+/**
+ * Format the title or a link to other entries.
+ *
+ * @param {ExtractData} data
+ * @returns {EntryItem}
+ */
 const formatter = (data : ExtractData) : EntryItem => {
   let result = { text: '' }
   switch (data.type) {

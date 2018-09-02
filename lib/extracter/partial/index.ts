@@ -7,8 +7,13 @@ import { ExtractData, ExtractDataType } from '../_type';
 
 const extracters = [ media, link ]
 const pattern    = new RegExp(`(${_.chain(extracters).map('mark').join('|').value()})`, 'ug')
-
-export const extract = (context : CheerioElement) : ExtractData[] => {
+/**
+ * Extract all links and media by traversing all extracters.
+ *
+ * @param {CheerioElement} context
+ * @returns {ExtractData[]}
+ */
+const extract = (context : CheerioElement) : ExtractData[] => {
   const $     = cheerio.load(context)
   const store = _.chain(extracters)
     /** replace tag */
@@ -43,3 +48,5 @@ export const extract = (context : CheerioElement) : ExtractData[] => {
   })
   return result
 }
+
+export { extract }

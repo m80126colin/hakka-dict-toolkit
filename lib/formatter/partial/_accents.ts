@@ -16,8 +16,13 @@ const list = [
   { tag: '白', value: '白讀' }
 ]
 const pattern = _.chain(list).map(o => o.tag).join('').value()
-
-const formatter = (text : string) : Sound[] => {
+/**
+ * Format accent with vunpag tags (文白讀) and accent tags that may exist.
+ *
+ * @param {string} text
+ * @returns {Sound[]} an array of accents
+ */
+const format = (text : string) : Sound[] => {
   const temp = text.match(new RegExp(`([${pattern}]|[0-9a-zA-Z ]+)`, 'ug'))
   let state : { vunpag? : number, accent? : number } = {}
   return _.chain(temp)
@@ -49,4 +54,4 @@ const formatter = (text : string) : Sound[] => {
     .value()
 }
 
-export { formatter as format }
+export { format }

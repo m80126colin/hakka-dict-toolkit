@@ -5,11 +5,11 @@ const tag  = 'a'
 const mark = '（link）'
 const type = ExtractDataType.Link
 /**
- *  Format link into objects with text and link.
+ * A handler to extract link into objects with text and link.
  *
- *  @param {CheerioStatic} jQuery
- *  @param {CheerioElement} context
- *  @returns {ExtractData[]}
+ * @param {CheerioStatic} jQuery
+ * @param {CheerioElement} context
+ * @returns {ExtractData[]}
  */
 const handler =
   (jQuery : CheerioStatic, context : CheerioElement) : ExtractData[] => _

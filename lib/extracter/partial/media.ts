@@ -5,11 +5,11 @@ const tag  = 'object'
 const mark = '（media）'
 const type = ExtractDataType.Media
 /**
- *  Format flash into objects with link.
+ * A handler to extract flash into objects with link.
  *
- *  @param {CheerioStatic} jQuery
- *  @param {CheerioElement} context
- *  @returns {ExtractData[]}
+ * @param {CheerioStatic} jQuery
+ * @param {CheerioElement} context
+ * @returns {ExtractData[]}
  */
 const handler =
   (jQuery : CheerioStatic, context : CheerioElement) : ExtractData[] => _

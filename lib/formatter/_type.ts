@@ -29,7 +29,7 @@ export interface CharacterEntry extends BasicEntry {
 
 export interface WordEntry extends BasicEntry {
   pos?     : string[],
-  use?     : string,
+  variant? : string,
   synonym? : EntryItem[],
   antonym? : EntryItem[]
 }

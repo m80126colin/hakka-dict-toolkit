@@ -4,7 +4,12 @@ import * as accents from './_accents';
 import { host }     from '../../util';
 import { Sound }    from '../_type';
 import { ExtractData, ExtractDataType } from '../../extracter/_type';
-
+/**
+ * Format main 6 accent fields in the entry.
+ *
+ * @param {ExtractData[]} data
+ * @returns {Sound}
+ */
 const formatter = (data : ExtractData[]) : Sound => {
   const s = _.map(data, (ext, idx) => {
     switch (ext.type) {

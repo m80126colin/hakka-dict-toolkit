@@ -3,8 +3,16 @@ import * as _       from 'lodash';
 import partial  from './partial';
 import { host } from '../util';
 import { ExtractData, ExtractDataType } from '../extracter/_type';
-import { Sound, BasicEntry, CharacterEntry, WordEntry } from './_type';
-
+import { Sound, BasicEntry, CharacterEntry, WordEntry, EntryItem } from './_type';
+/**
+ * Format other accents into an array with following fields:
+ *    1. Vun-pag accents (文白讀),
+ *    2. another accents (又音),
+ *    3. multiple-accent words (多音字).
+ *
+ * @param {ExtractData[][]} data
+ * @returns {Sound[]}
+ */
 const makeAnother = (data : ExtractData[][]) : Sound[] => {
   // vunpag accents
   const vunpag = _.chain(data[10])
@@ -19,7 +27,30 @@ const makeAnother = (data : ExtractData[][]) : Sound[] => {
     .value()
   return _.concat([], vunpag, multi_accents)
 }
-
+/**
+ * Format synonym or antonym into an array of EntryItem.
+ *
+ * @param {ExtractData[]} data
+ * @returns {EntryItem[]}
+ */
+const makeSemantics = (data : ExtractData[]) : EntryItem[] => _.chain(data)
+  .tail()
+  .map(partial.item)
+  .compact()
+  .value()
+/**
+ * Format following fields that exists in both word and character:
+ *    1. title (詞目),
+ *    2. main 6 accents in the entry: Xi-Ien (四縣), Hoi-Liug (海陸), Tai-Bu (大埔),
+ *       Ngiau-Pin (饒平), Zhio-On (詔安), Nam-Xi-Ian (南四縣),
+ *    3. meanings of entry,
+ *    4. mandarin translation,
+ *    5. other accents different from main 6 accents.
+ * And check the type of entry.
+ *
+ * @param {ExtractData[][]} data
+ * @returns {BasicEntry}
+ */
 const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
   let basic = {
     title:   partial.item(data[0][1]).text,
@@ -27,6 +58,7 @@ const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
     sounds:  _.map(_.range(1, 1 + 6), idx => partial.sound(data[idx])),
     meaning: data[7][1].text
   }
+  // another accents
   const another = makeAnother(data)
   if (another.length > 0)
     _.assign(basic, { another })
@@ -35,10 +67,18 @@ const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
     _.assign(basic, { mandarin: data[13][1].text })
   return basic
 }
-
+/**
+ * Format fields only appeared in character entry:
+ *    1. radical,
+ *    2. strokes.
+ *
+ * @param {ExtractData[][]} data
+ * @param {BasicEntry} basic
+ * @returns {CharacterEntry}
+ */
 const makeCharacterEntry = (data : ExtractData[][], basic : BasicEntry) : CharacterEntry => {
   let character : CharacterEntry = _.merge({}, basic)
-  //
+  // radical
   const radical = _.split(data[0][2].text, /:\s*/u)[1]
   if (radical.length > 0)
     _.assign(character, { radical })
@@ -53,7 +93,17 @@ const makeCharacterEntry = (data : ExtractData[][], basic : BasicEntry) : Charac
     })
   return character
 }
-
+/**
+ * Format fields only appeared in word entry:
+ *    1. part of speech,
+ *    2. the variant form used in other references (各家用字表),
+ *    3. synonym,
+ *    4. antonym.
+ *
+ * @param {ExtractData[][]} data
+ * @param {BasicEntry} basic
+ * @returns {WordEntry}
+ */
 const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry => {
   let word : WordEntry = _.merge({}, basic)
   // part of speech
@@ -65,35 +115,23 @@ const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry =
     _.assign(word, { pos })
   //
   if (data[0][3].type === ExtractDataType.Link) {
-    const use = `${host}/${data[0][3].link.match(/open\u0028\u0027([^']+)/u)[1]}`
-    _.assign(word, { use })
+    const variant = `${host}/${data[0][3].link.match(/open\u0028\u0027([^']+)/u)[1]}`
+    _.assign(word, { variant })
   }
   // synonym
-  const synonym = _.chain(data[8])
-    .tail()
-    .filter(ext => ext.type === ExtractDataType.Link || ext.text !== '、')
-    .map(partial.item)
-    .value()
+  const synonym = makeSemantics(data[8])
   if (synonym.length > 0)
     _.assign(word, { synonym })
   // antonym
-  const antonym = _.chain(data[9])
-    .tail()
-    .filter(ext => ext.type === ExtractDataType.Link || ext.text !== '、')
-    .map(partial.item)
-    .value()
+  const antonym = makeSemantics(data[9])
   if (antonym.length > 0)
     _.assign(word, { antonym })
   return word
 }
 
 export default (data : ExtractData[][]) : CharacterEntry | WordEntry => {
-  /** BasicEntry */
   const basic = makeBasicEntry(data)
-  /** make CharacterEntry */
-  if (basic.type === 'character') {
+  if (basic.type === 'character')
     return makeCharacterEntry(data, basic)
-  }
-  /** make WordEntry */
   return makeWordEntry(data, basic)
 }
