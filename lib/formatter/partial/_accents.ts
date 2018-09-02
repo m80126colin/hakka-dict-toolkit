@@ -49,4 +49,4 @@ const formatter = (text : string) : Sound[] => {
     .value()
 }
 
-export default formatter
+export { formatter as format }

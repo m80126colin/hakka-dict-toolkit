@@ -1,11 +1,11 @@
 import * as _ from 'lodash'
 
-import accents                          from './accents';
-import { host }                         from '../../util';
-import { Sound }                        from '../_type';
-import { ExtractData, ExtractDataType } from '../../extract/_type';
+import * as accents from './_accents';
+import { host }     from '../../util';
+import { Sound }    from '../_type';
+import { ExtractData, ExtractDataType } from '../../extracter/_type';
 
-export default (data : ExtractData[]) : Sound => {
+const formatter = (data : ExtractData[]) : Sound => {
   const s = _.map(data, (ext, idx) => {
     switch (ext.type) {
       case ExtractDataType.Link:
@@ -15,10 +15,12 @@ export default (data : ExtractData[]) : Sound => {
       case ExtractDataType.Text:
         if (idx === 0)
           return { type: ext.text }
-        return accents(ext.text)[0]
+        return accents.format(ext.text)[0]
       default:
         break;
     }
   })
   return _.merge.apply(null, s)
 }
+
+export default formatter

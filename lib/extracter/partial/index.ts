@@ -1,14 +1,14 @@
 import * as _       from 'lodash';
 import * as cheerio from 'cheerio';
 
-import { ExtractData, ExtractDataType } from './_type';
 import link  from './link';
 import media from './media';
+import { ExtractData, ExtractDataType } from '../_type';
 
 const extracters = [ media, link ]
 const pattern    = new RegExp(`(${_.chain(extracters).map('mark').join('|').value()})`, 'ug')
 
-export default (context : CheerioElement) : ExtractData[] => {
+export const extract = (context : CheerioElement) : ExtractData[] => {
   const $     = cheerio.load(context)
   const store = _.chain(extracters)
     /** replace tag */

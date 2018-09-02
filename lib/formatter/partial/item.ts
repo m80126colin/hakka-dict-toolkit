@@ -2,17 +2,24 @@ import * as _ from 'lodash';
 
 import { host }                         from '../../util';
 import { EntryItem }                    from '../_type';
-import { ExtractData, ExtractDataType } from '../../extract/_type';
+import { ExtractData, ExtractDataType } from '../../extracter/_type';
 
-export default (data : ExtractData) : EntryItem => {
+const pattern = new RegExp('【([^】]+)】', 'u')
+
+const formatter = (data : ExtractData) : EntryItem => {
   let result = { text: '' }
   switch (data.type) {
     case ExtractDataType.Link:
       result = _.assign(result, { link: `${host}/${data.link}` })
     case ExtractDataType.Text:
-      result = _.assign(result, { text: data.text.match(/【([^】]+)】/u)[1] })
+      const match = data.text.match(pattern)
+      if (match === null)
+        return undefined
+      result = _.assign(result, { text: match[1] })
       return result
     default:
       break;
   }
 }
+
+export default formatter

@@ -1,11 +1,11 @@
 import * as _ from 'lodash'
-import { Extracter, ExtractData, ExtractDataType } from './_type';
+import { Extracter, ExtractData, ExtractDataType } from '../_type';
 
-const tag  = 'object'
-const mark = '（media）'
-const type = ExtractDataType.Media
+const tag  = 'a'
+const mark = '（link）'
+const type = ExtractDataType.Link
 /**
- *  Format flash into objects with link.
+ *  Format link into objects with text and link.
  *
  *  @param {CheerioStatic} jQuery
  *  @param {CheerioElement} context
@@ -14,7 +14,11 @@ const type = ExtractDataType.Media
 const handler =
   (jQuery : CheerioStatic, context : CheerioElement) : ExtractData[] => _
     .map(jQuery(tag, context), dom => {
-      return { type, link: jQuery(dom).html().match(/mp3=([^"]+)/u)[1] }
+      return {
+        type,
+        text: jQuery(dom).text(),
+        link: jQuery(dom).attr('href')
+      }
     })
 
 export default new Extracter(tag, mark, type, handler)

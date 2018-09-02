@@ -1,10 +1,8 @@
 import * as _       from 'lodash';
-import * as cheerio from 'cheerio';
 
-import extract  from '../extract';
 import partial  from './partial';
 import { host } from '../util';
-import { ExtractData, ExtractDataType } from '../extract/_type';
+import { ExtractData, ExtractDataType } from '../extracter/_type';
 import { Sound, BasicEntry, CharacterEntry, WordEntry } from './_type';
 
 const makeAnother = (data : ExtractData[][]) : Sound[] => {
@@ -24,7 +22,7 @@ const makeAnother = (data : ExtractData[][]) : Sound[] => {
 
 const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
   let basic = {
-    title:   partial.title(data[0][1]).text,
+    title:   partial.item(data[0][1]).text,
     type:    (data[0][2].text.match('詞性') === null) ? 'character' : 'word',
     sounds:  _.map(_.range(1, 1 + 6), idx => partial.sound(data[idx])),
     meaning: data[7][1].text
@@ -71,27 +69,25 @@ const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry =
     _.assign(word, { use })
   }
   // synonym
-  const synonym = _.chain(data[8]).tail().map(partial.title).value()
+  const synonym = _.chain(data[8])
+    .tail()
+    .filter(ext => ext.type === ExtractDataType.Link || ext.text !== '、')
+    .map(partial.item)
+    .value()
   if (synonym.length > 0)
     _.assign(word, { synonym })
   // antonym
-  const antonym = _.chain(data[9]).tail().map(partial.title).value()
+  const antonym = _.chain(data[9])
+    .tail()
+    .filter(ext => ext.type === ExtractDataType.Link || ext.text !== '、')
+    .map(partial.item)
+    .value()
   if (antonym.length > 0)
     _.assign(word, { antonym })
   return word
 }
 
-export default (context : string) : CharacterEntry | WordEntry => {
-  const $    = cheerio.load(context)
-  const rows = $('font > table.t14 > tbody > tr', context)
-  const data = _.map(rows, (row, idx) => {
-    if (idx !== 12)
-      return _.flatMap($('tr > td', row), data => extract(data))
-    // for special format field 'multiple accents (多音字)'
-    return _.concat(
-      extract($('tr > td', row)[0]),
-      _.flatMap($('tr', $(row)), data => extract(data)))
-  })
+export default (data : ExtractData[][]) : CharacterEntry | WordEntry => {
   /** BasicEntry */
   const basic = makeBasicEntry(data)
   /** make CharacterEntry */
