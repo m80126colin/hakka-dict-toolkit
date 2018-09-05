@@ -28,6 +28,67 @@ var hakka = require('hakka-dict-toolkit')
 hakka.entry(10377)
 ```
 
+### hakka.entry(index)
+
+Provide access to the entry of MOE Hakka Dictionary by index and returns a promise with either a format of word or character's.
+
+#### Return Format (word)
+
+``` ts
+{
+  title     : string,
+  type      : string,
+  sounds    : Sound[],
+  meaning   : string,
+  mandarin? : string,
+  another?  : Sound[],
+  pos?      : string[],
+  variant?  : string,
+  synonym?  : EntryItem[],
+  antonym?  : EntryItem[]
+}
+```
+
+* `title`: title of the entry
+* `type`: `'word'`, indicate the type of return format
+* `sounds`
+
+#### Return Format (character)
+
+``` ts
+{
+  title     : string,
+  type      : string,
+  sounds    : Sound[],
+  meaning   : string,
+  mandarin? : string,
+  another?  : Sound[],
+  radical?  : string,
+  stroke?   : number[]
+}
+```
+
+#### Sound
+
+``` ts
+{
+  type?    : string;
+  phonetic : string;
+  media?   : string;
+  related? : string;
+  vunpag?  : string;
+}
+```
+
+#### EntryItem
+
+``` ts
+{
+  text  : string;
+  link? : string;
+}
+```
+
 License
 ---
 
