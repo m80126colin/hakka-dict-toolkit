@@ -22,7 +22,7 @@ npm install hakka-dict-toolkit --save
 Usage
 ---
 
-```
+``` js
 var hakka = require('hakka-dict-toolkit')
 
 hakka.entry(10377)
