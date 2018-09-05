@@ -18,11 +18,13 @@
     "url": "https://github.com/m80126colin/hakka-dict-toolkit.git"
   },
   "keywords": [
-    "crawler", "hakka"
+    "crawler",
+    "hakka"
   ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.10",
+    "npm": "^6.4.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
