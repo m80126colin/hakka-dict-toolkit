@@ -13,9 +13,9 @@ const extract = (context : string) : ExtractData[][] => {
   const $    = cheerio.load(context)
   const rows = $('font > table.t14 > tbody > tr', context)
   const data = _.map(rows, (row, idx) => {
-    if (idx !== 12)
+    if (idx !== 11 && idx !== 12)
       return _.flatMap($('tr > td', row), data => partial.extract(data))
-    // Extract special from of field 'multiple accents (多音字)'
+    // Extract special from for field 'another accents (又音)' and 'multiple accents (多音字)'
     return _.concat(
       partial.extract($('tr > td', row)[0]),
       _.flatMap($('tr', $(row)), data => partial.extract(data)))

@@ -11,7 +11,7 @@ import { image_table } from '../util';
  */
 const filter : Filter = (context : string) : string => {
   const $ = cheerio.load(context)
-  $('img').each(node => {
+  _.map($('img'), node => {
     const link = $(node).attr('src')
     $(node).replaceWith(image_table[link])
   })

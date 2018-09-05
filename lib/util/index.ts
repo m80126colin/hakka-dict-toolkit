@@ -70,7 +70,7 @@ const unicode_table = [
   ['䯋', 'koupng/F448.png'],
   ['⿺皮卜', 'koupng/F545.png']]
 
-export const host  = 'http://hakka.dict.edu.tw/hakkadict'
+export const host  = 'https://hakka.dict.edu.tw/hakkadict'
 
 export const image_table = _
   .chain(unicode_table)

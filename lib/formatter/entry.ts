@@ -19,13 +19,19 @@ const makeAnother = (data : ExtractData[][]) : Sound[] => {
     .tail()
     .flatMap(acc => partial.another([acc]))
     .value()
+  // another accents
+  const another = _.chain(data[11])
+    .tail()
+    .chunk(2)
+    .flatMap(partial.another)
+    .value()
   // multiple accents
   const multi_accents = _.chain(data[12])
     .tail()
     .chunk(2)
     .flatMap(partial.another)
     .value()
-  return _.concat([], vunpag, multi_accents)
+  return _.concat([], vunpag, another, multi_accents)
 }
 /**
  * Format synonym or antonym into an array of EntryItem.
@@ -55,7 +61,15 @@ const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
   let basic = {
     title:   partial.item(data[0][1]).text,
     type:    (data[0][2].text.match('詞性') === null) ? 'character' : 'word',
-    sounds:  _.map(_.range(1, 1 + 6), idx => partial.sound(data[idx])),
+    sounds:  _.chain(_.range(1, 1 + 6))
+      .map(idx => {
+        const res = partial.sound(_.tail(data[idx]))
+        if (_.toPairs(res).length === 0)
+          return undefined
+        return _.merge(res, { type: data[idx][0].text })
+      })
+      .compact()
+      .value(),
     meaning: data[7][1].text
   }
   // another accents

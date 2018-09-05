@@ -18,8 +18,6 @@ const formatter = (data : ExtractData[]) : Sound => {
       case ExtractDataType.Media:
         return { media: `${host}/${ext.link}` }
       case ExtractDataType.Text:
-        if (idx === 0)
-          return { type: ext.text }
         return accents.format(ext.text)[0]
       default:
         break;

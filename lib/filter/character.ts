@@ -10,7 +10,7 @@ import { replace_list } from '../util';
  */
 const filter : Filter = (context : string) : string => _.reduce(
   replace_list,
-  (str, pair) => _.replace(str, new RegExp(pair[0], 'ug'), pair[1]),
+  (str, pair) => _.replace(str, new RegExp(`&#x${pair[0]};`, 'ug'), pair[1]),
   context)
 
 export default filter
