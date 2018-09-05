@@ -1,7 +1,7 @@
 hakka-dict-toolkit
 ===
 
-[![NPM version](https://badge.fury.io/js/badge-list.svg)][npm]
+[![NPM version](https://badge.fury.io/js/hakka-dict-toolkit.svg)][npm]
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)][repo]
 
 A toolkit for [Taiwan Hakka Dictionary][site].
