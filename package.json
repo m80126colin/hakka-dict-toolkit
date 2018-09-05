@@ -1,16 +1,30 @@
 {
   "name": "hakka-dict-toolkit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A toolkit for https://hakka.dict.edu.tw/hakkadict/index.htm",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Hsu Karinsu<m80126colin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --declaration"
+    "build": "yarn run clean & tsc",
+    "clean": "rm -rf dist"
   },
+  "bugs": {
+    "url": "https://github.com/m80126colin/hakka-dict-toolkit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m80126colin/hakka-dict-toolkit.git"
+  },
+  "keywords": [
+    "crawler",
+    "hakka"
+  ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.10",
+    "npm": "^6.4.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },

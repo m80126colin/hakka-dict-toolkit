@@ -23,8 +23,12 @@ const pattern = _.chain(list).map(o => o.tag).join('').value()
  * @returns {Sound[]} an array of accents
  */
 const format = (text : string) : Sound[] => {
-  const temp = text.match(new RegExp(`([${pattern}]|[0-9a-zA-Z ]+)`, 'ug'))
-  let state : { vunpag? : number, accent? : number } = {}
+  const regexp = new RegExp(`([${pattern}]|[0-9a-zA-Z ]+)`, 'ug')
+  const temp   = _.flatMap(text.match(/([^、]+)/ug), str => _.chain(str.match(regexp))
+    .map(_.trim)
+    .compact()
+    .value())
+  let state : { vunpag? : number, type? : number } = {}
   return _.chain(temp)
     .map(value => _.chain(value)
       .split(/\s+/)
@@ -40,7 +44,7 @@ const format = (text : string) : Sound[] => {
       }
       const idx_accent = _.findIndex(list, o => o.tag === value)
       if (idx_accent > -1) {
-        state.accent = idx_accent
+        state.type   = idx_accent
         return undefined
       }
       const result : Sound = _.chain(state)
