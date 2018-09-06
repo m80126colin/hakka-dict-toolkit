@@ -51,7 +51,7 @@ Provide access to the entry of MOE Hakka Dictionary by index and returns a promi
 
 * `title`: title of the entry
 * `type`: `'word'`, indicate the type of return format
-* `sounds`
+* `sounds`: see [Sound](#entry-sound)
 
 #### Return Format (character)
 
@@ -68,7 +68,7 @@ Provide access to the entry of MOE Hakka Dictionary by index and returns a promi
 }
 ```
 
-#### Sound
+#### [Sound](#entry-sound)
 
 ``` ts
 {
