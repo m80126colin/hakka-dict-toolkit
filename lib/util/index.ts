@@ -85,3 +85,5 @@ export const replace_list = _
     return [key, v]
   })
   .value()
+
+export const randomHan = () => String.fromCharCode(_.random(0x4E00, 0x9FFF))
