@@ -1,4 +1,6 @@
 import * as _ from 'lodash';
+
+import * as random from './random';
 /**
  *  The table about all images corresponded to unicode characters in MOE Hakka dictionary.
  */
@@ -87,3 +89,5 @@ export const replace_list = _
   .value()
 
 export const randomHan = () => String.fromCharCode(_.random(0x4E00, 0x9FFF))
+
+export { random }

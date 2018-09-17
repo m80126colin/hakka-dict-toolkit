@@ -11,11 +11,15 @@ const pattern = new RegExp('【([^】]+)】', 'u')
  * @param {ExtractData} data
  * @returns {EntryItem}
  */
-const formatter = (data : ExtractData) : EntryItem => {
+const formatter = (data : ExtractData, options = { verbose: false }) : EntryItem => {
   let result = { text: '' }
   switch (data.type) {
     case ExtractDataType.Link:
-      result = _.assign(result, { link: `${host}/${data.link}` })
+      if (options.verbose)
+        result = _.assign(result, { link: `${host}/${data.link}` })
+      else {
+        result = _.assign(result, { index: parseInt(data.link.match(/n_no=(\d+)/u)[1]) })
+      }
     case ExtractDataType.Text:
       const match = data.text.match(pattern)
       if (match === null)

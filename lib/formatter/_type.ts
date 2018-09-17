@@ -1,8 +1,7 @@
-import another from "./partial/another";
-
 export type EntryItem = {
-  text  : string;
-  link? : string;
+  text   : string;
+  link?  : string;
+  index? : number;
 }
 
 export type Sound = {

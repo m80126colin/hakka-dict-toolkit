@@ -41,7 +41,7 @@ const makeAnother = (data : ExtractData[][]) : Sound[] => {
  */
 const makeSemantics = (data : ExtractData[]) : EntryItem[] => _.chain(data)
   .tail()
-  .map(partial.item)
+  .map(item => partial.item(item))
   .compact()
   .value()
 /**
