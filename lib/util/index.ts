@@ -1,6 +1,8 @@
 import * as _ from 'lodash';
 
+import host from './host';
 import * as random from './random';
+import * as query  from './query';
 /**
  *  The table about all images corresponded to unicode characters in MOE Hakka dictionary.
  */
@@ -72,8 +74,6 @@ const unicode_table = [
   ['䯋', 'koupng/F448.png'],
   ['⿺皮卜', 'koupng/F545.png']]
 
-export const host  = 'https://hakka.dict.edu.tw/hakkadict'
-
 export const image_table = _
   .chain(unicode_table)
   .map(([v, k]) => [k, v])
@@ -88,6 +88,4 @@ export const replace_list = _
   })
   .value()
 
-export const randomHan = () => String.fromCharCode(_.random(0x4E00, 0x9FFF))
-
-export { random }
+export { random, query, host }

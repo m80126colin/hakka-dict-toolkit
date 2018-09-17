@@ -1,22 +1,16 @@
 import * as _  from 'lodash';
 import * as qs from 'querystring';
 
-import { host, random } from '../util';
+import * as util from '../util';
 import { EntryItem } from '../formatter/_type';
 
 const postprocessor = (result : EntryItem[], options = { verbose: false }) => _.map(result,
   item => {
-    if (options.verbose) {
-      const query = qs.stringify({
-        n_no:      item.index,
-        soundtype: 0,
-        sample:    random.sinitic()
-      })
+    if (options.verbose)
       return {
         text: item.text,
-        link: `${host}/result_detail.jsp?${query}`
+        link: util.query.entry(item.index)
       }
-    }
     return item
   })
 
