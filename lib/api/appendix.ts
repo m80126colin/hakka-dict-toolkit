@@ -1,14 +1,13 @@
 import * as _       from 'lodash';
 import * as request from 'request-promise';
-import * as qs      from 'querystring';
 
 import * as filter    from '../filter';
 import * as extracter from '../extracter';
 import * as formatter from '../formatter';
 import * as util      from '../util';
-import { ExtractData } from '../extracter/_type';
+import { HakkaDict } from '../_type';
 
-const appendix = (index : string, type : number) : Promise<ExtractData[][]> => {
+const appendix = (index : string, type : number) : Promise<HakkaDict.ExtractData[][]> => {
   return request({
       method: 'GET',
       uri: util.query.appendix(index, type),

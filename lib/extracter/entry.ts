@@ -2,14 +2,14 @@ import * as _       from 'lodash';
 import * as cheerio from 'cheerio';
 
 import * as partial from './partial';
-import { ExtractData } from './_type';
+import { HakkaDict } from '../_type';
 /**
  * Extract the form of entry of MOE Hakka Dictionary.
  *
  * @param {string} context
- * @returns {ExtractData[][]}
+ * @returns {HakkaDict.ExtractData[][]}
  */
-const extract = (context : string) : ExtractData[][] => {
+const extract = (context : string) : HakkaDict.ExtractData[][] => {
   const $    = cheerio.load(context)
   const rows = $('font > table.t14 > tbody > tr', context)
   const data = _.map(rows, (row, idx) => {

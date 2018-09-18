@@ -1,10 +1,9 @@
 import * as _ from 'lodash';
 
 import partial from './partial';
-import { ExtractData } from '../extracter/_type';
-import { EntryItem }   from './_type';
+import { HakkaDict } from '../_type';
 
-export default (data : ExtractData[][]) : EntryItem[] => _
+export default (data : HakkaDict.ExtractData[][]) : HakkaDict.EntryItem[] => _
   .chain(data)
   .initial()
   .tail()

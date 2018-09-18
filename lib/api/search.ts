@@ -1,6 +1,5 @@
 import * as _       from 'lodash';
 import * as request from 'request-promise';
-import * as qs      from 'querystring';
 
 import * as filter        from '../filter';
 import * as extracter     from '../extracter';
