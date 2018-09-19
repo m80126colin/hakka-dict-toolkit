@@ -1,25 +1,21 @@
 import * as _ from 'lodash';
 
 import { host }      from '../../util';
-import { HakkaDict } from '../../_type';
+import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
 
 const pattern = new RegExp('【([^】]+)】', 'u')
 /**
  * Format the title or a link to other entries.
  *
- * @param {HakkaDict.ExtractData} data
- * @returns {HakkaDict.EntryItem}
+ * @param {HakkaDictExtract.Data} data
+ * @returns {HakkaDictProtoType.Item}
  */
-const formatter = (data : HakkaDict.ExtractData, options = { verbose: false }) : HakkaDict.EntryItem => {
+const formatter = (data : HakkaDictExtract.Data) : HakkaDictProtoType.Item => {
   let result = { text: '' }
   switch (data.type) {
-    case HakkaDict.ExtractDataType.Link:
-      if (options.verbose)
-        result = _.assign(result, { link: `${host}/${data.link}` })
-      else {
-        result = _.assign(result, { index: parseInt(data.link.match(/n_no=(\d+)/u)[1]) })
-      }
-    case HakkaDict.ExtractDataType.Text:
+    case HakkaDictExtract.DataType.Link:
+      result = _.assign(result, { index: parseInt(data.link.match(/n_no=(\d+)/u)[1]) })
+    case HakkaDictExtract.DataType.Text:
       const match = data.text.match(pattern)
       if (match === null)
         return undefined

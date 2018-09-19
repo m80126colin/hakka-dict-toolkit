@@ -1,18 +1,18 @@
 import * as _ from 'lodash'
-import { HakkaDict } from '../../_type';
+import { HakkaDictExtract } from '../../_type';
 
 const tag  = 'a'
 const mark = '（link）'
-const type = HakkaDict.ExtractDataType.Link
+const type = HakkaDictExtract.DataType.Link
 /**
  * A handler to extract link into objects with text and link.
  *
  * @param {CheerioStatic} jQuery
  * @param {CheerioElement} context
- * @returns {HakkaDict.ExtractData[]}
+ * @returns {HakkaDictExtract.Data[]}
  */
 const handler =
-  (jQuery : CheerioStatic, context : CheerioElement) : HakkaDict.ExtractData[] => _
+  (jQuery : CheerioStatic, context : CheerioElement) : HakkaDictExtract.Data[] => _
     .map(jQuery(tag, context), dom => {
       return {
         type,
@@ -21,4 +21,4 @@ const handler =
       }
     })
 
-export default new HakkaDict.Extracter(tag, mark, type, handler)
+export default new HakkaDictExtract.Extracter(tag, mark, type, handler)

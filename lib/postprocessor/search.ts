@@ -2,9 +2,9 @@ import * as _  from 'lodash';
 import * as qs from 'querystring';
 
 import * as util from '../util';
-import { HakkaDict } from '../_type';
+import { HakkaDictProtoType } from '../_type';
 
-const postprocessor = (result : HakkaDict.EntryItem[], options = { verbose: false }) => _.map(result,
+const postprocessor = (result : HakkaDictProtoType.Item[], options = { verbose: true }) => _.map(result,
   item => {
     if (options.verbose)
       return {
