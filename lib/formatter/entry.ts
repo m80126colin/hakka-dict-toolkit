@@ -137,7 +137,7 @@ const makeWordEntry = (data : HakkaDictExtract.Data[][], basic : HakkaDictProtoT
   })
 }
 
-export default (index : number, data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.Char | HakkaDictProtoType.Word => {
+export default (index : number, data : HakkaDictExtract.Data[][]) : (HakkaDictProtoType.Char | HakkaDictProtoType.Word) => {
   const basic = makeBasicForm(data, index)
   if (basic.type === 'character')
     return makeCharacterEntry(data, basic)

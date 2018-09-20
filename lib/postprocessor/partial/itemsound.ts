@@ -6,14 +6,15 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../../_type
 const postprocessor = (sound : HakkaDictProtoType.ItemSound, options : HakkaDictOption) : HakkaDictProtoType.ItemSound | HakkaDictEntry.ItemSound => {
   if (!options.verbose)
     return sound
-  const s = {
+  let s = {
     type:     util.accent.reverse(sound.type),
-    phonetic: sound.phonetic,
-    link:     util.query.entry(sound.index)
+    phonetic: sound.phonetic
   }
-  if (!sound.vunbag)
-    return s
-  return _.merge(s, { vunbag: sound.vunbag })
+  if (sound.vunbag)
+    _.assign(s, { vunbag: sound.vunbag })
+  if (sound.index)
+    _.assign(s, { link: util.query.entry(sound.index) })
+  return s
 }
 
 export default postprocessor

@@ -16,12 +16,12 @@ export namespace HakkaDictEntry {
     media : string
   }
   export interface ItemSound extends BasicSound {
-    link : string
+    link? : string
   }
-  interface BasicForm {
+  export interface BasicForm {
     title    : string,
-    another  : ItemSound[],
     sounds   : MainSound[],
+    another  : ItemSound[],
     meaning  : string,
     mandarin : string
   }

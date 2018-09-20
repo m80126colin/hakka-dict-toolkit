@@ -9,7 +9,7 @@ import * as postprocessor from '../postprocessor';
 import * as util from '../util';
 import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../_type';
 
-const search = (str : string, options : HakkaDictOption) : Promise<HakkaDictProtoType.Item[] | HakkaDictEntry.Item[]> => {
+const search = (str : string, options : HakkaDictOption) : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
   return request({
       method: 'GET',
       uri: util.query.search(str),
