@@ -28,6 +28,8 @@ var hakka = require('hakka-dict-toolkit')
 hakka.entry(10377)
 ```
 
+### hakka.entry(index)
+
 License
 ---
 
