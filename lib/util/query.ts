@@ -34,3 +34,11 @@ export const appendix = (index : string, type : number) : string => {
   })
   return `${host}/Showkou345.jsp?${query}`
 }
+
+export const variant = (index : string) : string => {
+  const query = qs.stringify({
+    wordiffquery: index,
+    soundtype:    0
+  })
+  return `${host}/ShowKouword.jsp?${query}`
+}

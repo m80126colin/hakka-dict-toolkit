@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 
+import * as util from '../../util';
 import { HakkaDictProtoType } from '../../_type';
 
 const list = [
@@ -49,8 +50,9 @@ const format = (text : string) : HakkaDictProtoType.Sound[] => {
         state.type   = idx_accent
         return undefined
       }
+      // convert by format
       const result : HakkaDictProtoType.Sound = _.chain(state)
-        .mapValues(idx => list[idx].value)
+        .mapValues((idx, key) => (key === 'type') ? util.accent.lookup(list[idx].value) : list[idx].value)
         .assign({ phonetic: value })
         .value()
       return result

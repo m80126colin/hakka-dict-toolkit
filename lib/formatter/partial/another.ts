@@ -1,15 +1,17 @@
 import * as _ from 'lodash';
 
-import * as accents  from './_accents';
-import { host }      from '../../util';
+import * as accents from './_accents';
 import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
 
-const reducer = (current : HakkaDictProtoType.Sound[], ext : HakkaDictExtract.Data) => {
+const reducer = (current : HakkaDictProtoType.ItemSound[], ext : HakkaDictExtract.Data) => {
   switch (ext.type) {
     case HakkaDictExtract.DataType.Text:
       return _.chain(accents.format(ext.text)).concat(current).value()
     case HakkaDictExtract.DataType.Link:
-      return _.map(current, c => _.assign(c, { related: `${host}/${ext.link}` }))
+      return _.map(current, c => {
+        const index = parseInt(ext.link.match(/n_no=(\d+)/)[1])
+        return _.assign(c, { index })
+      })
     default:
       return current
   }
@@ -18,10 +20,10 @@ const reducer = (current : HakkaDictProtoType.Sound[], ext : HakkaDictExtract.Da
  * Format another accent fields different from the main 6 accents.
  *
  * @param {HakkaDictExtract.Data[]} data
- * @returns {HakkaDictProtoType.Sound[]}
+ * @returns {HakkaDictProtoType.ItemSound[]}
  */
-const formatter = (data : HakkaDictExtract.Data[]) : HakkaDictProtoType.Sound[] => {
-  let init : HakkaDictProtoType.Sound[] = []
+const formatter = (data : HakkaDictExtract.Data[]) : HakkaDictProtoType.ItemSound[] => {
+  let init : HakkaDictProtoType.ItemSound[] = []
   const s = _.reduce(data, reducer, init)
   return s
 }

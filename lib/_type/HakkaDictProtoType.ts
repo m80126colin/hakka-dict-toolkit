@@ -3,28 +3,36 @@ export namespace HakkaDictProtoType {
     text   : string;
     index? : number;
   }
-  export type Sound = {
-    phonetic : string;
-    vunpag?  : string;
-    type?    : number;
-    id?      : string;
+  export interface Sound {
+    phonetic  : string;
+    vunbag?   : string;
+    type?     : number;
+  }
+  export interface MainSound extends Sound {
+    hasmedia? : boolean;
+  }
+  export interface ItemSound extends Sound {
+    index? : number;
   }
   export interface BasicForm {
-    title     : string,
-    type      : string,
-    sounds    : Sound[],
-    meaning   : string,
-    mandarin? : string,
-    another?  : Sound[]
+    title    : string,
+    type     : string,
+    index    : number,
+    index_ap : string,
+    sounds   : MainSound[],
+    another  : ItemSound[],
+    related  : { type : number }[],
+    meaning  : string,
+    mandarin : string
   }
   export interface Char extends BasicForm {
-    radical? : string,
-    stroke?  : number[]
+    radical : string,
+    stroke  : number[]
   }
   export interface Word extends BasicForm {
-    pos?     : string[],
-    variant? : string,
-    synonym? : Item[],
-    antonym? : Item[]
+    pos     : string[],
+    variant : boolean,
+    synonym : Item[],
+    antonym : Item[]
   }
 }
