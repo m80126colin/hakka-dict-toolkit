@@ -2,18 +2,17 @@ import * as _       from 'lodash';
 
 import partial  from './partial';
 import { host } from '../util';
-import { ExtractData, ExtractDataType } from '../extracter/_type';
-import { Sound, BasicEntry, CharacterEntry, WordEntry, EntryItem } from './_type';
+import { HakkaDictExtract, HakkaDictProtoType } from '../_type';
 /**
  * Format other accents into an array with following fields:
  *    1. Vun-pag accents (文白讀),
  *    2. another accents (又音),
  *    3. multiple-accent words (多音字).
  *
- * @param {ExtractData[][]} data
- * @returns {Sound[]}
+ * @param {HakkaDictExtract.Data[][]} data
+ * @returns {HakkaDictProtoType.Sound[]}
  */
-const makeAnother = (data : ExtractData[][]) : Sound[] => {
+const makeAnother = (data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.Sound[] => {
   // vunpag accents
   const vunpag = _.chain(data[10])
     .tail()
@@ -36,12 +35,12 @@ const makeAnother = (data : ExtractData[][]) : Sound[] => {
 /**
  * Format synonym or antonym into an array of EntryItem.
  *
- * @param {ExtractData[]} data
- * @returns {EntryItem[]}
+ * @param {HakkaDictExtract.Data[]} data
+ * @returns {HakkaDictProtoType.Item[]}
  */
-const makeSemantics = (data : ExtractData[]) : EntryItem[] => _.chain(data)
+const makeSemantics = (data : HakkaDictExtract.Data[]) : HakkaDictProtoType.Item[] => _.chain(data)
   .tail()
-  .map(partial.item)
+  .map(item => partial.item(item))
   .compact()
   .value()
 /**
@@ -54,10 +53,10 @@ const makeSemantics = (data : ExtractData[]) : EntryItem[] => _.chain(data)
  *    5. other accents different from main 6 accents.
  * And check the type of entry.
  *
- * @param {ExtractData[][]} data
- * @returns {BasicEntry}
+ * @param {HakkaDict.ExtractData[][]} data
+ * @returns {HakkaDictProtoType.BasicForm}
  */
-const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
+const makeBasicForm = (data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.BasicForm => {
   let basic = {
     title:   partial.item(data[0][1]).text,
     type:    (data[0][2].text.match('詞性') === null) ? 'character' : 'word',
@@ -86,12 +85,12 @@ const makeBasicEntry = (data : ExtractData[][]) : BasicEntry => {
  *    1. radical,
  *    2. strokes.
  *
- * @param {ExtractData[][]} data
- * @param {BasicEntry} basic
- * @returns {CharacterEntry}
+ * @param {HakkaDictExtract.Data[][]} data
+ * @param {HakkaDictProtoType.BasicForm} basic
+ * @returns {HakkaDictProtoType.Char}
  */
-const makeCharacterEntry = (data : ExtractData[][], basic : BasicEntry) : CharacterEntry => {
-  let character : CharacterEntry = _.merge({}, basic)
+const makeCharacterEntry = (data : HakkaDictExtract.Data[][], basic : HakkaDictProtoType.BasicForm) : HakkaDictProtoType.Char => {
+  let character : HakkaDictProtoType.Char = _.merge({}, basic)
   // radical
   const radical = _.split(data[0][2].text, /:\s*/u)[1]
   if (radical.length > 0)
@@ -114,12 +113,12 @@ const makeCharacterEntry = (data : ExtractData[][], basic : BasicEntry) : Charac
  *    3. synonym,
  *    4. antonym.
  *
- * @param {ExtractData[][]} data
- * @param {BasicEntry} basic
- * @returns {WordEntry}
+ * @param {HakkaDictExtract.Data[][]} data
+ * @param {HakkaDictProtoType.BasicForm} basic
+ * @returns {HakkaDictProtoType.Word}
  */
-const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry => {
-  let word : WordEntry = _.merge({}, basic)
+const makeWordEntry = (data : HakkaDictExtract.Data[][], basic : HakkaDictProtoType.BasicForm) : HakkaDictProtoType.Word => {
+  let word : HakkaDictProtoType.Word = _.merge({}, basic)
   // part of speech
   const pos = _.chain(data[0][2].text)
     .split(/:?\s+/u)
@@ -128,7 +127,7 @@ const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry =
   if (pos.length > 0)
     _.assign(word, { pos })
   //
-  if (data[0][3].type === ExtractDataType.Link) {
+  if (data[0][3].type === HakkaDictExtract.DataType.Link) {
     const variant = `${host}/${data[0][3].link.match(/open\u0028\u0027([^']+)/u)[1]}`
     _.assign(word, { variant })
   }
@@ -143,8 +142,8 @@ const makeWordEntry = (data : ExtractData[][], basic : BasicEntry) : WordEntry =
   return word
 }
 
-export default (data : ExtractData[][]) : CharacterEntry | WordEntry => {
-  const basic = makeBasicEntry(data)
+export default (data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.Char | HakkaDictProtoType.Word => {
+  const basic = makeBasicForm(data)
   if (basic.type === 'character')
     return makeCharacterEntry(data, basic)
   return makeWordEntry(data, basic)

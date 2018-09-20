@@ -1,23 +1,23 @@
 import * as _       from 'lodash';
 import * as request from 'request-promise';
 
-import * as extracter from '../extracter';
 import * as filter    from '../filter';
+import * as extracter from '../extracter';
 import * as formatter from '../formatter';
-import { host } from '../util';
+import * as util      from '../util';
 import { WordEntry, CharacterEntry } from '../formatter/_type';
 /**
  * Provide access to the entry of MOE Hakka Dictionary by index and returns a promise.
  *
- * @param {number} idx index of entry
+ * @param {number} index index of entry
  * @returns a promise with either a word or a character
  */
-const entry = (idx : number) : Promise<WordEntry | CharacterEntry> => {
-  const options = {
-    method: 'GET',
-    uri: `${host}/result_detail.jsp?n_no=${idx}&soundtype=0&sample=[`
-  }
-  return request(options)
+const entry = (index : number) : Promise<WordEntry | CharacterEntry> => {
+  return request({
+      method: 'GET',
+      uri: util.query.entry(index),
+      strictSSL: false
+    })
     .then(filter.image)
     .then(filter.character)
     .then(extracter.entry)

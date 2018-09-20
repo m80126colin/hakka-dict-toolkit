@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { Sound } from '../_type';
+import { HakkaDictProtoType } from '../../_type';
 
 const list = [
   { tag: '四', value: '四縣音' },
@@ -20,9 +20,9 @@ const pattern = _.chain(list).map(o => o.tag).join('').value()
  * Format accent with vunpag tags (文白讀) and accent tags that may exist.
  *
  * @param {string} text
- * @returns {Sound[]} an array of accents
+ * @returns {HakkaDictProtoType.Sound[]} an array of accents
  */
-const format = (text : string) : Sound[] => {
+const format = (text : string) : HakkaDictProtoType.Sound[] => {
   const regexp = new RegExp(`([${pattern}]|[0-9a-zA-Z ]+)`, 'ug')
   const temp   = _.flatMap(text.match(/([^、]+)/ug), str => _.chain(str.match(regexp))
     .map(_.trim)
@@ -37,17 +37,19 @@ const format = (text : string) : Sound[] => {
       .value())
     .reverse()
     .map(value => {
+      // set the state with either literary (文讀) or colloquial (白讀) reading
       const idx_vunpag = _.findIndex(list, o => o.tag === value, 9)
       if (idx_vunpag > -1) {
         state.vunpag = idx_vunpag
         return undefined
       }
+      // set the state with type of accents
       const idx_accent = _.findIndex(list, o => o.tag === value)
       if (idx_accent > -1) {
         state.type   = idx_accent
         return undefined
       }
-      const result : Sound = _.chain(state)
+      const result : HakkaDictProtoType.Sound = _.chain(state)
         .mapValues(idx => list[idx].value)
         .assign({ phonetic: value })
         .value()

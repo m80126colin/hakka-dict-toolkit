@@ -1,0 +1,1 @@
+export default 'https://hakka.dict.edu.tw/hakkadict'

@@ -1,7 +1,9 @@
 import * as api from './api';
 
 class HakkaDictToolkitAPI {
-  entry = api.entry;
+  entry    = api.entry;
+  appendix = api.appendix;
+  search   = api.search;
   constructor() {}
 }
 

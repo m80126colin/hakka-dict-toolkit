@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 
 import link  from './link';
 import media from './media';
-import { ExtractData, ExtractDataType } from '../_type';
+import { HakkaDictExtract } from '../../_type';
 
 const extracters = [ media, link ]
 const pattern    = new RegExp(`(${_.chain(extracters).map('mark').join('|').value()})`, 'ug')
@@ -11,9 +11,9 @@ const pattern    = new RegExp(`(${_.chain(extracters).map('mark').join('|').valu
  * Extract all links and media by traversing all extracters.
  *
  * @param {CheerioElement} context
- * @returns {ExtractData[]}
+ * @returns {HakkaDictExtract.Data[]}
  */
-const extract = (context : CheerioElement) : ExtractData[] => {
+const extract = (context : CheerioElement) : HakkaDictExtract.Data[] => {
   const $     = cheerio.load(context)
   const store = _.chain(extracters)
     /** replace tag */
@@ -24,7 +24,7 @@ const extract = (context : CheerioElement) : ExtractData[] => {
     })
     .zipWith(extracters, (form, exter) => _.merge({ elements: form }, exter))
     .value()
-  const result : ExtractData[] = _.chain($(context).text())
+  const result : HakkaDictExtract.Data[] = _.chain($(context).text())
     .split(pattern)
     .map(_.trim)
     .compact()
@@ -32,7 +32,7 @@ const extract = (context : CheerioElement) : ExtractData[] => {
       const res = _.filter(store, e => e.mark === str)
       if (res.length !== 1)
         return {
-          type: ExtractDataType.Text,
+          type: HakkaDictExtract.DataType.Text,
           text: _.trim(str)
         }
       return {
