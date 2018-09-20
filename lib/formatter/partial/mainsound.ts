@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 
 import * as util    from '../../util';
-import * as accents from './_accents';
+import * as sound from './_sound';
 import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
 /**
  * Format main 6 accent fields in the entry.
@@ -15,7 +15,7 @@ const formatter = (data : HakkaDictExtract.Data[]) : HakkaDictProtoType.MainSoun
       return { type: util.accent.lookup(ext.text) }
     switch (ext.type) {
       case HakkaDictExtract.DataType.Text:
-        return accents.format(ext.text)[0]
+        return sound.format(ext.text)[0]
       case HakkaDictExtract.DataType.Media:
         return { hasmedia: true }
       default:

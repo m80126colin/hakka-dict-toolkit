@@ -1,17 +1,14 @@
-import * as _  from 'lodash';
-import * as qs from 'querystring';
+import * as _       from 'lodash';
+import * as partial from './partial';
+import { HakkaDictProtoType, HakkaDictOption } from '../_type';
 
-import * as util from '../util';
-import { HakkaDictProtoType } from '../_type';
+const options_default : HakkaDictOption = {
+  verbose: true
+}
 
-const postprocessor = (result : HakkaDictProtoType.Item[], options = { verbose: true }) => _.map(result,
-  item => {
-    if (options.verbose)
-      return {
-        text: item.text,
-        link: util.query.entry(item.index)
-      }
-    return item
-  })
+const postprocessor = (result : HakkaDictProtoType.Item[], options : HakkaDictOption) => {
+  const opt = _.defaults(options, options_default)
+  return _.map(result, item => partial.item(item, opt))
+}
 
 export default postprocessor

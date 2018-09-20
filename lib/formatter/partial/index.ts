@@ -1,5 +1,5 @@
-import another from './another';
-import sound   from './sound';
-import item    from './item';
+import itemsound from './itemsound';
+import mainsound from './mainsound';
+import item      from './item';
 
-export default { another, sound, item }
+export default { itemsound, mainsound, item }

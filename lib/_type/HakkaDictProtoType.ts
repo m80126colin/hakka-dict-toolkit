@@ -1,18 +1,18 @@
 export namespace HakkaDictProtoType {
   export type Item = {
-    text   : string;
-    index? : number;
+    text   : string,
+    index? : number
   }
   export interface Sound {
-    phonetic  : string;
-    vunbag?   : string;
-    type?     : number;
+    phonetic : string,
+    vunbag?  : string,
+    type?    : number
   }
   export interface MainSound extends Sound {
-    hasmedia? : boolean;
+    hasmedia? : boolean
   }
   export interface ItemSound extends Sound {
-    index? : number;
+    index? : number
   }
   export interface BasicForm {
     title    : string,

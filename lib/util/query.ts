@@ -1,5 +1,6 @@
 import host from './host';
 
+import * as _      from 'lodash';
 import * as qs     from  'querystring';
 import * as random from './random';
 
@@ -41,4 +42,8 @@ export const variant = (index : string) : string => {
     soundtype:    0
   })
   return `${host}/ShowKouword.jsp?${query}`
+}
+
+export const media = (index : number, type : number, is_appendix = false) : string => {
+  return `${host}/audio/s_sound${type}${is_appendix ? '_1' : ''}/${_.padStart(`${index}`, 5, '0')}.mp3`
 }

@@ -20,7 +20,7 @@ const collectAnotherSound = (data : HakkaDictExtract.Data[][]) : HakkaDictProtoT
   const result : HakkaDictExtract.Data[][] = []
   return _.chain(result)
     .concat(vunpag, another, multi)
-    .flatMap(partial.another)
+    .flatMap(partial.itemsound)
     .value()
 }
 /**
@@ -51,7 +51,7 @@ const makeBasicForm = (data : HakkaDictExtract.Data[][], index : number) : Hakka
   // main accents
   const collect_sounds = _.chain(_.range(1, 1 + 6))
     .map(idx => {
-      const res = partial.sound(data[idx])
+      const res = partial.mainsound(data[idx])
       if (!res.phonetic)
         return undefined
       return res

@@ -1,32 +1,38 @@
 export namespace HakkaDictEntry {
-  export interface Item {
-    text   : string;
-    link?  : string;
-    index? : number;
+  export type Item = {
+    text  : string;
+    link? : string;
   }
-  export interface Sound {
-    phonetic : string;
-    type?    : string;
-    media?   : string;
-    vunpag?  : string;
-    related? : string;
+  export type Appendix = {
+    type : string,
+    link : string
   }
-  export interface BasicForm {
-    title     : string,
-    type      : string,
-    sounds    : Sound[],
-    meaning   : string,
-    mandarin? : string,
-    another?  : Sound[]
+  interface BasicSound {
+    type     : string,
+    phonetic : string,
+    vunpag?  : string
+  }
+  export interface MainSound extends BasicSound {
+    media : string
+  }
+  export interface ItemSound extends BasicSound {
+    link : string
+  }
+  interface BasicForm {
+    title    : string,
+    another  : ItemSound[],
+    sounds   : MainSound[],
+    meaning  : string,
+    mandarin : string
   }
   export interface Char extends BasicForm {
-    radical? : string,
-    stroke?  : number[]
+    radical : string,
+    stroke  : number[]
   }
   export interface Word extends BasicForm {
-    pos?     : string[],
-    variant? : string,
-    synonym? : Item[],
-    antonym? : Item[]
+    pos     : string[],
+    variant : string,
+    synonym : Item[],
+    antonym : Item[]
   }
 }

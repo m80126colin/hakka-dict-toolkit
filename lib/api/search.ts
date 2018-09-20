@@ -7,9 +7,9 @@ import * as formatter     from '../formatter';
 import * as postprocessor from '../postprocessor';
 
 import * as util from '../util';
-import { HakkaDictProtoType } from '../_type';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../_type';
 
-const search = (str : string, options = { verbose: true }) : Promise<HakkaDictProtoType.Item[]> => {
+const search = (str : string, options : HakkaDictOption) : Promise<HakkaDictProtoType.Item[] | HakkaDictEntry.Item[]> => {
   return request({
       method: 'GET',
       uri: util.query.search(str),
@@ -19,7 +19,7 @@ const search = (str : string, options = { verbose: true }) : Promise<HakkaDictPr
     .then(filter.character)
     .then(extracter.search)
     .then(formatter.search)
-    // .then(result => postprocessor.search(result, options))
+    .then(result => postprocessor.search(result, options))
 }
 
 export default search

@@ -1,12 +1,12 @@
 import * as _ from 'lodash';
 
-import * as accents from './_accents';
+import * as sound from './_sound';
 import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
 
 const reducer = (current : HakkaDictProtoType.ItemSound[], ext : HakkaDictExtract.Data) => {
   switch (ext.type) {
     case HakkaDictExtract.DataType.Text:
-      return _.chain(accents.format(ext.text)).concat(current).value()
+      return _.chain(sound.format(ext.text)).concat(current).value()
     case HakkaDictExtract.DataType.Link:
       return _.map(current, c => {
         const index = parseInt(ext.link.match(/n_no=(\d+)/)[1])
