@@ -7,16 +7,20 @@ export namespace HakkaDictEntry {
     type : string,
     link : string
   }
-  interface BasicSound {
+  interface Sound {
     type     : string,
     phonetic : string,
     vunpag?  : string
   }
-  export interface MainSound extends BasicSound {
+  export interface MainSound extends Sound {
     media : string
   }
-  export interface ItemSound extends BasicSound {
+  export interface ItemSound extends Sound {
     link? : string
+  }
+  export interface AppSound  extends Sound {
+    text?  : string,
+    media? : string
   }
   export interface BasicForm {
     title    : string,

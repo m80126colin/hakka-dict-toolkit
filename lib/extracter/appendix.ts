@@ -12,9 +12,7 @@ import { HakkaDictExtract } from '../_type';
 const extract = (context : string) : HakkaDictExtract.Data[][] => {
   const $    = cheerio.load(context)
   const rows = $('font > table.chineseword > tbody > tr', context)
-  return _.map(rows, row => _.flatMap(
-    $('tr > td', row),
-    data => partial.extract(data)))
+  return _.map(rows, row => _.flatMap($('tr > td', row), partial.extract))
 }
 
 export default extract

@@ -1,13 +1,14 @@
 import * as _       from 'lodash';
 import * as request from 'request-promise';
 
-import * as filter    from '../filter';
-import * as extracter from '../extracter';
-import * as formatter from '../formatter';
+import * as filter        from '../filter';
+import * as extracter     from '../extracter';
+import * as formatter     from '../formatter';
+import * as postprocessor from '../postprocessor';
 import * as util      from '../util';
-import { HakkaDictExtract } from '../_type';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../_type';
 
-const appendix = (index : string, type : number, options = { verbose: true }) : Promise<HakkaDictExtract.Data[][]> => {
+const appendix = (index : string, type : number, options : HakkaDictOption) : Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]> => {
   return request({
       method: 'GET',
       uri: util.query.appendix(index, type),
@@ -16,7 +17,8 @@ const appendix = (index : string, type : number, options = { verbose: true }) : 
     .then(filter.image)
     .then(filter.character)
     .then(extracter.appendix)
-    // .then(formatter.entry)
+    .then(formatter.appendix)
+    .then(result => postprocessor.appendix(result, options))
 }
 
 export default appendix

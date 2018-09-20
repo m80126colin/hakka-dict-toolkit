@@ -14,6 +14,10 @@ export namespace HakkaDictProtoType {
   export interface ItemSound extends Sound {
     index? : number
   }
+  export interface AppSound  extends Sound {
+    text?  : string,
+    index? : number
+  }
   export interface BasicForm {
     title    : string,
     type     : string,

@@ -1,4 +1,5 @@
-import entry  from './entry';
-import search from './search';
+import appendix from './appendix';
+import entry    from './entry';
+import search   from './search';
 
-export { entry, search }
+export { appendix, entry, search }
