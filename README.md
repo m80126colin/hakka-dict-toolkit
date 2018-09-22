@@ -63,7 +63,7 @@ Provide access to the appendix of MOE Hakka Dictionary by index and returns a pr
 ```
 
 * `title`: title of the entry
-* `sounds`: pronounciations in 6 mainly Hakka dialects in Taiwan. See [Entry.MainSound](#entrymainsound).
+* `sounds`: pronounciations in 6 main Hakka dialects in Taiwan. See [Entry.MainSound](#entrymainsound).
 * `another`: other pronounciations, including Vun-pag accents (文白讀). See [Entry.ItemSound](#entryitemsound).
 * `meaning`: definition of the entry
 * `mandarin`: gloss in Mandarin
@@ -100,6 +100,8 @@ Provide access to the entry of MOE Hakka Dictionary by indicator and dialect typ
 * `5`: Zhio-On dialect (詔安腔)
 * `6`: Nam-Xi-Ian dialect (南四縣)
 
+See [Hakka Dialects](#hakka-dialects).
+
 Options
 ---
 
@@ -125,9 +127,9 @@ Other Formats
 }
 ```
 
-* `type`: type of dialect, see [Hakka Dialects](#hakkadialects)
+* `type`: type of dialect, see [Hakka Dialects](#hakka-dialects)
 * `phonetic`: spelled by Hakka-ngi Phin-Yim Fong-On, see [Romanisation](#romanisation)
-* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](#literaryreadingsandcolloquialreadings)
+* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](literary-readings-and-colloquial-readings-文白異讀)
 * `media`: an uri to the sound of pronounciation
 
 ### Entry.ItemSound
@@ -189,6 +191,17 @@ Other Formats
 }
 ```
 
+* `title`: title of the entry
+* `type`: `word`, indicating the type of return value
+* `sounds`: pronounciations in 6 main Hakka dialects in Taiwan. See [Proto.MainSound](#protomainsound).
+* `another`: other pronounciations, including Vun-pag accents (文白讀). See [Proto.ItemSound](#protoitemsound).
+* `meaning`: definition of the entry
+* `mandarin`: gloss in Mandarin
+* `pos`: part of speeches
+* `variant`: indicate whether the entry exists the link about variant written form
+* `synonym`: list of synonyms. See [Proto.Item](#protoitem).
+* `antonym`: similar as above
+
 ### Proto.Char
 
 ``` ts
@@ -207,6 +220,10 @@ Other Formats
 }
 ```
 
+* `type`: `character`, indicating the type of return value
+* `radical`: an important component of Sinitic character to look up (部首)
+* `stroke`: two numbers indicating stroke count of Sinitic character excluding radical and including radical, respectively
+
 ### Proto.MainSound
 
 ``` ts
@@ -218,6 +235,9 @@ Other Formats
 }
 ```
 
+* `type`: type of dialect, see [Hakka Dialects](#hakka-dialects)
+* `phonetic`: spelled by Hakka-ngi Phin-Yim Fong-On, see [Romanisation](#romanisation)
+* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](literary-readings-and-colloquial-readings-文白異讀)
 * `hasmedia`: indicate whether it has media or not
 
 ### Proto.ItemSound
@@ -273,9 +293,18 @@ The romanisation is called [Hakka-ngi Phin-Yim Fong-On](https://ws.moe.edu.tw/Do
 
 A relative notation between distinct reading forms to the identical character, called **Literary Reading** (Vun-tug, 文讀) and **Colloquial Reading** (Pag-tug, 白讀), is mainly used in languages in Sinitic family. Generally, tag `'文讀'` indicates the reading form is used in formal situation or is later introduced in the phonological system, whereas tag `'白讀'` often indicates the reading form is used in informal situation or is former introduced or original in the phonological system.
 
-For example, in Hakka
+For example, character **生** (life, fresh, raw, unacquaintance), in Xi-Ien Hakka, has two reading forms: literary reading *sen24 (sɛn˨˦)* and colloquial form *sang24 (saŋ˨˦)*.
 
 ### Hakka Dialects
+
+There are 6 main Hakka dialects recognized in Taiwan:
+
+1. Xi-Ien dialect (四縣腔)
+2. Hoi-Liug dialect (海陸腔)
+3. Tai-Bu dialect (大埔腔)
+4. Ngiau-Pin dialect (饒平腔)
+5. Zhio-On dialect (詔安腔)
+6. Nam-Xi-Ian dialect (南四縣)
 
 License
 ---
