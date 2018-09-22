@@ -22,11 +22,21 @@ npm install hakka-dict-toolkit --save
 Usage
 ---
 
+### Overview
+
 ``` js
 var hakka = require('hakka-dict-toolkit')
-
+// search query
+hakka.search('客')
+// access entry via index
 hakka.entry(10377)
+// appendix in the entry 10377
+hakka.appendix('03002-001', 3)
 ```
+
+* `hakka.search(string, [options])`
+* `hakka.entry(index, [options])`
+* `hakka.appendix(string, type, [options])`
 
 ### hakka.entry(index)
 
