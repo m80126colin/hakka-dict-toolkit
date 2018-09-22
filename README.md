@@ -51,14 +51,14 @@ Provide access to the appendix of MOE Hakka Dictionary by index and returns a pr
 ``` ts
 {
   title    : string,
-  sounds   : MainSound[],
-  another  : ItemSound[],
+  sounds   : Entry.MainSound[],
+  another  : Entry.ItemSound[],
   meaning  : string,
   mandarin : string,
   pos      : string[],
   variant  : string,
-  synonym  : Item[],
-  antonym  : Item[]
+  synonym  : Entry.Item[],
+  antonym  : Entry.Item[]
 }
 ```
 
@@ -77,8 +77,8 @@ Provide access to the appendix of MOE Hakka Dictionary by index and returns a pr
 ``` ts
 {
   title    : string,
-  sounds   : MainSound[],
-  another  : ItemSound[],
+  sounds   : Entry.MainSound[],
+  another  : Entry.ItemSound[],
   meaning  : string,
   mandarin : string
   radical  : string,
@@ -103,7 +103,7 @@ Provide access to the entry of MOE Hakka Dictionary by indicator and dialect typ
 Options
 ---
 
-### verbose
+### verbose (boolean)
 
 Default value is `true`. If the flag is set to be `false`, the return values will turn to be:
 
@@ -125,9 +125,9 @@ Other Formats
 }
 ```
 
-* `type`: type of dialect
-* `phonetic`: spelled in Hakka-ngi Phin-Yim Fong-On (客家語拼音方案) published in Taiwan in 2012
-* `vunpag`: either '文讀' (vun-tug, literary reading) or '白讀' (pag-tug, colloquial reading)
+* `type`: type of dialect, see [Hakka Dialects](#hakkadialects)
+* `phonetic`: spelled by Hakka-ngi Phin-Yim Fong-On, see [Romanisation](#romanisation)
+* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](#literaryreadingsandcolloquialreadings)
 * `media`: an uri to the sound of pronounciation
 
 ### Entry.ItemSound
@@ -184,8 +184,8 @@ Other Formats
   mandarin : string,
   pos      : string[],
   variant  : boolean,
-  synonym  : Item[],
-  antonym  : Item[]
+  synonym  : Proto.Item[],
+  antonym  : Proto.Item[]
 }
 ```
 
@@ -249,6 +249,33 @@ Other Formats
 * `phonetic`, `vunbag`, `type`: see [Proto.MainSound](#protomainsound)
 * `text`: title of the appendix
 * `index`: index about media
+
+### Proto.Item
+
+``` ts
+{
+  text   : string,
+  index? : number
+}
+```
+
+* `text`: title of the entry
+* `index`: index to the entry
+
+Misc
+---
+
+### Romanisation
+
+The romanisation is called [Hakka-ngi Phin-Yim Fong-On](https://ws.moe.edu.tw/Download.ashx?u=C099358C81D4876C9D87E4835F9287C8E804826AA0BBAC116FDDD09213D47224C65D7C4B9E7E96854E511221BDA745F75EC872EF3E39AD9E&n=7943FD1CFE79AA2AA97DB40E60641199FD1A8116E2843D28&icon=..pdf) (客家語拼音方案), published by MOE in Taiwan in 2012.
+
+### Literary Readings and Colloquial Readings (文白異讀)
+
+A relative notation between distinct reading forms to the identical character, called **Literary Reading** (Vun-tug, 文讀) and **Colloquial Reading** (Pag-tug, 白讀), is mainly used in languages in Sinitic family. Generally, tag `'文讀'` indicates the reading form is used in formal situation or is later introduced in the phonological system, whereas tag `'白讀'` often indicates the reading form is used in informal situation or is former introduced or original in the phonological system.
+
+For example, in Hakka
+
+### Hakka Dialects
 
 License
 ---
