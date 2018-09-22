@@ -59,7 +59,7 @@ Provide access to the entry of MOE Hakka Dictionary by index and returns a promi
 ```
 
 * `title`: title of the entry
-* `sounds`: pronounciations in 6 mainly Hakka dialects in Taiwan. See [MainSound](#mainsound).
+* `sounds`: pronounciations in 6 mainly Hakka dialects in Taiwan. See [Entry.MainSound](#entrymainsound).
 * `another`: other pronounciations, including Vun-pag accents (文白讀). See [ItemSound](#itemsound).
 * `meaning`: definition of the entry
 * `mandarin`: gloss in Mandarin
@@ -85,9 +85,10 @@ Provide access to the entry of MOE Hakka Dictionary by index and returns a promi
 * `radical`: an important component of Sinitic character to look up (部首)
 * `stroke`: two numbers indicating stroke count of Sinitic character excluding radical and including radical, respectively
 
-### Formats
+Formats
+---
 
-#### MainSound
+### Entry.MainSound
 
 ``` ts
 {
