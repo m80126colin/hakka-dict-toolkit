@@ -24,7 +24,7 @@ const collectAnotherSound = (data : HakkaDictExtract.Data[][]) : HakkaDictProtoT
     .value()
 }
 /**
- * Format synonym or antonym into an array of EntryItem.
+ * Format synonym or antonym into an array of HakkaDictProtoType.Item.
  *
  * @param {HakkaDictExtract.Data[]} data
  * @returns {HakkaDictProtoType.Item[]}
@@ -37,12 +37,15 @@ const collectSemantics = (data : HakkaDictExtract.Data[]) : HakkaDictProtoType.I
 /**
  * Format following fields that exists in both word and character:
  *    1. title (詞目),
- *    2. main 6 accents in the entry: Xi-Ien (四縣), Hoi-Liug (海陸), Tai-Bu (大埔),
+ *    2. index of the entry, which will be used to the link of media of accents,
+ *    3. index of the appendix (相關資料連結) and variant form (各家用字表),
+ *    4. main 6 accents in the entry: Xi-Ien (四縣), Hoi-Liug (海陸), Tai-Bu (大埔),
  *       Ngiau-Pin (饒平), Zhio-On (詔安), Nam-Xi-Ian (南四縣),
- *    3. meanings of entry,
- *    4. mandarin translation,
- *    5. other accents different from main 6 accents.
- * And check the type of entry.
+ *    5. other accents different from main 6 accents,
+ *    6. meanings of entry,
+ *    7. mandarin translation.
+ * And check the entry which is either character or word.
+ * @see HakkaDictProtoType.BasicForm
  *
  * @param {HakkaDict.ExtractData[][]} data
  * @returns {HakkaDictProtoType.BasicForm}
@@ -90,6 +93,7 @@ const makeBasicForm = (data : HakkaDictExtract.Data[][], index : number) : Hakka
  * Format fields only appeared in character entry:
  *    1. radical,
  *    2. strokes.
+ * @see HakkaDictProtoType.Char
  *
  * @param {HakkaDictExtract.Data[][]} data
  * @param {HakkaDictProtoType.BasicForm} basic
@@ -111,6 +115,7 @@ const makeCharacterEntry = (data : HakkaDictExtract.Data[][], basic : HakkaDictP
  *    2. the variant form used in other references (各家用字表),
  *    3. synonym,
  *    4. antonym.
+ * @see HakkaDictProtoType.Word
  *
  * @param {HakkaDictExtract.Data[][]} data
  * @param {HakkaDictProtoType.BasicForm} basic

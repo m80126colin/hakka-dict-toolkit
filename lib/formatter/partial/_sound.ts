@@ -18,7 +18,7 @@ const list = [
 ]
 const pattern = _.chain(list).map(o => o.tag).join('').value()
 /**
- * Format accent with vunpag tags (文白讀) and accent tags that may exist.
+ * Format accent with vunpag tags (文白讀) and accent tags if exists.
  *
  * @param {string} text
  * @returns {HakkaDictProtoType.Sound[]} an array of accents

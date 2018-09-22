@@ -8,7 +8,14 @@ import * as postprocessor from '../postprocessor';
 
 import * as util from '../util';
 import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../_type';
-
+/**
+ * Search to MOE Hakka Dictionary.
+ *
+ * @param {string} str query string
+ * @param {HakkaDictOption} options @see HakkaDictOption
+ * @returns {(Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]>)} a promise with
+ *   list of result
+ */
 const search = (str : string, options : HakkaDictOption) : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
   return request({
       method: 'GET',

@@ -4,7 +4,7 @@ import * as util    from '../../util';
 import * as sound from './_sound';
 import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
 /**
- * 
+ * Format the sound of appendix.
  *
  * @param {HakkaDictExtract.Data[]} data
  * @returns {HakkaDictProtoType.AppSound}
