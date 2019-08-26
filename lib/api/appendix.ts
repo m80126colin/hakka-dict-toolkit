@@ -6,7 +6,7 @@ import * as extracter     from '../extracter';
 import * as formatter     from '../formatter';
 import * as postprocessor from '../postprocessor';
 import * as util      from '../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../_type';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../types';
 
 /**
  * Retrieve accent link after main accents in the entry.

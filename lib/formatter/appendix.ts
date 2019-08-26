@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 
 import * as util from '../util';
 import partial from './partial';
-import { HakkaDictExtract, HakkaDictProtoType } from '../_type';
+import { HakkaDictExtract, HakkaDictProtoType } from '../types';
 
 export default (data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.AppSound[] => _
   .chain(data)

@@ -7,7 +7,7 @@ import * as formatter     from '../formatter';
 import * as postprocessor from '../postprocessor';
 
 import * as util from '../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption, HakkaDictExtract } from '../_type';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption, HakkaDictExtract } from '../types';
 /**
  * Provide access to the entry of MOE Hakka Dictionary by index and returns a promise.
  *

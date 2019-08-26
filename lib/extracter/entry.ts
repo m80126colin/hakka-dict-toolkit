@@ -2,7 +2,7 @@ import * as _       from 'lodash';
 import * as cheerio from 'cheerio';
 
 import * as partial from './partial';
-import { HakkaDictExtract } from '../_type';
+import { HakkaDictExtract } from '../types';
 /**
  * Extract the form of entry of MOE Hakka Dictionary.
  *

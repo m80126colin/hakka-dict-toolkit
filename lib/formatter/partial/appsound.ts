@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 
 import * as util    from '../../util';
 import * as sound from './_sound';
-import { HakkaDictExtract, HakkaDictProtoType } from '../../_type';
+import { HakkaDictExtract, HakkaDictProtoType } from '../../types';
 /**
  * Format the sound of appendix.
  *

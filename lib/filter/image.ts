@@ -2,7 +2,7 @@ import * as _       from 'lodash';
 import * as cheerio from 'cheerio';
 
 import * as util from '../util';
-import { HakkaDictFilter } from '../_type';
+import { HakkaDictFilter } from '../types';
 /**
  * Convert image into corresponding unicode characters.
  *

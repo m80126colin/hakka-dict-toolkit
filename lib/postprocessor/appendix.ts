@@ -1,6 +1,6 @@
 import * as _       from 'lodash';
 import * as partial from './partial';
-import { HakkaDictProtoType, HakkaDictOption } from '../_type';
+import { HakkaDictProtoType, HakkaDictOption } from '../types';
 
 const options_default : HakkaDictOption = {
   verbose: true

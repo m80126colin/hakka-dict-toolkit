@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 import * as util from '../../util';
-import { HakkaDictProtoType } from '../../_type';
+import { HakkaDictProtoType } from '../../types';
 
 const list = [
   { tag: '四', value: '四縣音' },
