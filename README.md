@@ -1,4 +1,4 @@
-hakka-dict-toolkit
+Hakka Dictionary Toolkit 臺灣客家語辭典程式查詢工具
 ===
 
 [![NPM version](https://badge.fury.io/js/hakka-dict-toolkit.svg)][npm]
@@ -25,18 +25,18 @@ Usage
 ### Overview
 
 ``` js
-var hakka = require('hakka-dict-toolkit')
+import hakka from 'hakka-dict-toolkit';
 // search query
-hakka.search('客')
+await hakka.search('客')
 // access entry via index
-hakka.entry(10377)
+await hakka.entry(10377)
 // appendix in the entry 10377
-hakka.appendix('03002-001', 3)
+await hakka.appendix('03002-001', 3)
 ```
 
-* `hakka.search(query, [options])`: search entries
-* `hakka.entry(index, [options])`: access to the entry 
-* `hakka.appendix(indicator, type, [options])`: access to the appendix
+* `hakka.search(query, [options])`: search with string
+* `hakka.entry(index, [options])`: access to the entry by id
+* `hakka.appendix(indicator, type, [options])`: access to the appendix by specifying indicator
 
 ### hakka.search(query, [options])
 
@@ -129,7 +129,7 @@ Other Formats
 
 * `type`: type of dialect, see [Hakka Dialects](#hakka-dialects)
 * `phonetic`: spelled by Hakka-ngi Phin-Yim Fong-On, see [Romanisation](#romanisation)
-* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](literary-readings-and-colloquial-readings-文白異讀)
+* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](#literary-readings-and-colloquial-readings-文白異讀)
 * `media`: an uri to the sound of pronounciation
 
 ### Entry.ItemSound
