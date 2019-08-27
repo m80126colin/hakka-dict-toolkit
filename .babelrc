@@ -9,15 +9,22 @@
     ]
   ],
   "plugins": [
-    ["@babel/plugin-transform-typescript", {
-      "allowNamespaces": true
-    }],
-    "@babel/plugin-proposal-class-properties",
-    ["module-resolver", {
-      "root": [ "." ],
-      "alias": {
-        "@": "./lib"
+    [
+      "@babel/plugin-transform-typescript", {
+        "allowNamespaces": true
       }
-    }]
-  ]
+    ],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/proposal-object-rest-spread",
+    [
+      "module-resolver", {
+        "root": [ "." ],
+        "alias": {
+          "@": "./lib"
+        }
+      }
+    ]
+  ],
+  "comments": false,
+  "minified": true
 }

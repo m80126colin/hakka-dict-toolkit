@@ -15,7 +15,7 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
  * @returns {(Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]>)} a promise with
  *   list of result
  */
-const search = (str : string, options : HakkaDictOption)
+const search = (str : string, options : HakkaDictOption = {})
   : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
     const url = util.query.search(str)
     return axios.get<string>(url)

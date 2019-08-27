@@ -10,6 +10,7 @@
     "clean": "rm -rf dist",
     "prebuild": "yarn clean",
     "build": "npx babel --extensions \".ts\" lib/ --out-dir dist/ && tsc",
+    "test": "mocha --require ./mocha.config.js test/**/*",
     "prepublish": "yarn build"
   },
   "bugs": {
@@ -32,12 +33,19 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "@types/babel-types": "^7.0.7",
+    "@types/chai": "^4.2.0",
     "@types/cheerio": "^0.22.9",
     "@types/lodash": "^4.14.137",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.9.2",
-    "babel-plugin-module-resolver": "^3.2.0"
+    "babel-plugin-module-resolver": "^3.2.0",
+    "chai": "^4.2.0",
+    "typescript": "^3.5.3"
   }
 }

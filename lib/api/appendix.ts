@@ -17,7 +17,7 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
  * @returns {(Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]>)} a promise
  *   with a accent list
  */
-const appendix = (index : string, type : number, options : HakkaDictOption)
+const appendix = (index : string, type : number, options : HakkaDictOption = {})
   : Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]> => {
     const url = util.query.appendix(index, type)
     return axios.get<string>(url)

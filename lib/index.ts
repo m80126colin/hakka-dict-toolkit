@@ -7,4 +7,7 @@ class HakkaDictToolkitAPI {
   constructor() {}
 }
 
-module.exports = new HakkaDictToolkitAPI()
+const APInstance = new HakkaDictToolkitAPI()
+
+export default APInstance
+module.exports = APInstance

@@ -11,9 +11,10 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
  * Provide access to the entry of MOE Hakka Dictionary by index and returns a promise.
  *
  * @param {number} index index of entry
+ * @param {HakkaDictOption} options @see HakkaDictOption
  * @returns a promise with either a word or a character
- *//**/
-const entry = (index : number, options : HakkaDictOption) : Promise<
+ */
+const entry = (index : number, options : HakkaDictOption = {}) : Promise<
   HakkaDictProtoType.Char | HakkaDictEntry.Char |
   HakkaDictProtoType.Word | HakkaDictEntry.Word> => {
     const url = util.query.entry(index)

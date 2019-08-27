@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "target": "esnext",
     "moduleResolution": "node",
-    "target": "es5",
-    "noImplicitAny": false,
+    "strict": false,
+    "watch": false,
     "declaration": true,
     "emitDeclarationOnly": true,
     "rootDir": "./lib",
     "outDir": "./dist",
-    "watch": false,
-    "lib": [ "es2015" ],
     "baseUrl": ".",
     "paths": {
       "@/*": [ "lib/*" ]
     }
   },
-  "include": [
+  "includes": [
     "./lib/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "./test/**/*"
   ]
 }
