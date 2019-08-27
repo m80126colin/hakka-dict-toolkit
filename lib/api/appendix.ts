@@ -1,12 +1,12 @@
 import * as _  from 'lodash';
 import axios   from 'axios';
 
-import * as filter        from '../filter';
-import * as extracter     from '../extracter';
-import * as formatter     from '../formatter';
-import * as postprocessor from '../postprocessor';
-import * as util      from '../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../types';
+import * as util          from '@/util';
+import * as filter        from '@/filter';
+import * as extracter     from '@/extracter';
+import * as formatter     from '@/formatter';
+import * as postprocessor from '@/postprocessor';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
 
 /**
  * Retrieve accent link after main accents in the entry.

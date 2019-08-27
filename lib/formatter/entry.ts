@@ -1,8 +1,8 @@
 import * as _    from 'lodash';
 
 import partial   from './partial';
-import * as util from '../util';
-import { HakkaDictExtract, HakkaDictProtoType } from '../types';
+import * as util from '@/util';
+import { HakkaDictExtract, HakkaDictProtoType } from '@/types';
 /**
  * Format other accents into an array with following fields:
  *    1. Vun-pag accents (文白讀), aka literary reading (文讀) and colloquial reading (白讀)

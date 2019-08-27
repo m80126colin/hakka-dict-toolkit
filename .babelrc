@@ -12,6 +12,12 @@
     ["@babel/plugin-transform-typescript", {
       "allowNamespaces": true
     }],
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    ["module-resolver", {
+      "root": [ "." ],
+      "alias": {
+        "@": "./lib"
+      }
+    }]
   ]
 }

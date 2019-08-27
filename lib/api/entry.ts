@@ -1,13 +1,12 @@
 import * as _  from 'lodash';
 import axios   from 'axios';
 
-import * as filter        from '../filter';
-import * as extracter     from '../extracter';
-import * as formatter     from '../formatter';
-import * as postprocessor from '../postprocessor';
-
-import * as util from '../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption, HakkaDictExtract } from '../types';
+import * as util          from '@/util';
+import * as filter        from '@/filter';
+import * as extracter     from '@/extracter';
+import * as formatter     from '@/formatter';
+import * as postprocessor from '@/postprocessor';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
 /**
  * Provide access to the entry of MOE Hakka Dictionary by index and returns a promise.
  *

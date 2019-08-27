@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
-import * as util from '../util';
-import { HakkaDictFilter } from '../types';
+import * as util from '@/util';
+import { HakkaDictFilter } from '@/types';
 /**
  * Convert specific character into corresponding unicode character.
  *

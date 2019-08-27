@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 import partial from './partial';
-import { HakkaDictExtract, HakkaDictProtoType } from '../types';
+import { HakkaDictExtract, HakkaDictProtoType } from '@/types';
 
 export default (data : HakkaDictExtract.Data[][]) : HakkaDictProtoType.Item[] => _
   .chain(data)

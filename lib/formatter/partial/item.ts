@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import { HakkaDictExtract, HakkaDictProtoType } from '../../types';
+import { HakkaDictExtract, HakkaDictProtoType } from '@/types';
 
 const pattern = new RegExp('【([^】]+)】', 'u')
 /**

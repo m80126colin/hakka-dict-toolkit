@@ -1,6 +1,6 @@
 {
   "name": "hakka-dict-toolkit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A toolkit for https://hakka.dict.edu.tw/hakkadict/index.htm",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "yarn clean",
-    "build": "npx babel --extensions \".ts\" lib/ --out-dir dist/ && tsc"
+    "build": "npx babel --extensions \".ts\" lib/ --out-dir dist/ && tsc",
+    "prepublish": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/m80126colin/hakka-dict-toolkit/issues"
@@ -31,13 +32,12 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-transform-classes": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.5.5",
     "@types/cheerio": "^0.22.9",
     "@types/lodash": "^4.14.137",
     "@types/node": "^10.9.2",
-    "@types/request-promise": "^4.1.42"
+    "babel-plugin-module-resolver": "^3.2.0"
   }
 }

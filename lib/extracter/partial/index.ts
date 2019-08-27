@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 
 import link  from './link';
 import media from './media';
-import { HakkaDictExtract } from '../../types';
+import { HakkaDictExtract } from '@/types';
 
 const extracters = [ media, link ]
 const pattern    = new RegExp(`(${_.chain(extracters).map('mark').join('|').value()})`, 'ug')

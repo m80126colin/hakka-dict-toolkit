@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import { HakkaDictExtract } from '../../types';
+import { HakkaDictExtract } from '@/types';
 
 const tag  = 'object'
 const mark = '（media）'

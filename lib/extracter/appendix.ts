@@ -2,7 +2,7 @@ import * as _       from 'lodash';
 import * as cheerio from 'cheerio';
 
 import * as partial from './partial';
-import { HakkaDictExtract } from '../types';
+import { HakkaDictExtract } from '@/types';
 /**
  * Extract the form of appendix after accents in the entry of MOE Hakka Dictionary.
  *

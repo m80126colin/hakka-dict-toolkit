@@ -1,21 +1,18 @@
 import * as _ from 'lodash';
 
-import * as util from '../../util';
-import { HakkaDictProtoType } from '../../types';
+import * as util from '@/util';
+import { accent } from '@/assets/accent';
+import { HakkaDictProtoType } from '@/types';
 
-const list = [
-  { tag: '四', value: '四縣音' },
-  { tag: '海', value: '海陸音' },
-  { tag: '大', value: '大埔音' },
-  { tag: '埔', value: '大埔音' },
-  { tag: '饒', value: '饒平音' },
-  { tag: '平', value: '饒平音' },
-  { tag: '詔', value: '詔安音' },
-  { tag: '安', value: '詔安音' },
-  { tag: '南', value: '南四縣' },
-  { tag: '文', value: '文讀' },
-  { tag: '白', value: '白讀' }
-]
+const list = _.chain(accent)
+  .flatMap(({ name : value, abbr }) => _.map(abbr, tag => {
+    return { tag, value }
+  }))
+  .concat([
+    { tag: '文', value: '文讀' },
+    { tag: '白', value: '白讀' }
+  ])
+  .value()
 const pattern = _.chain(list).map(o => o.tag).join('').value()
 /**
  * Format accent with vunpag tags (文白讀) and accent tags if exists.

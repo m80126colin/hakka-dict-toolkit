@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es5",
     "noImplicitAny": false,
     "declaration": true,
@@ -8,7 +9,11 @@
     "rootDir": "./lib",
     "outDir": "./dist",
     "watch": false,
-    "lib": [ "es2015" ]
+    "lib": [ "es2015" ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [ "lib/*" ]
+    }
   },
   "include": [
     "./lib/**/*"

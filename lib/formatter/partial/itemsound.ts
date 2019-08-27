@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 import * as sound from './_sound';
-import { HakkaDictExtract, HakkaDictProtoType } from '../../types';
+import { HakkaDictExtract, HakkaDictProtoType } from '@/types';
 
 const reducer = (current : HakkaDictProtoType.ItemSound[], ext : HakkaDictExtract.Data) => {
   switch (ext.type) {

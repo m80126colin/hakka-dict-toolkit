@@ -1,8 +1,8 @@
-import host from './host';
-
 import * as _      from 'lodash';
 import * as qs     from  'querystring';
+
 import * as random from './random';
+import host from '@/assets/host';
 
 export const search = (str : string) : string => {
   const query = qs.stringify({

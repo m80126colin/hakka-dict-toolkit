@@ -1,17 +1,13 @@
 import * as _ from 'lodash';
 
-const accents : [string, number][] = [
-  ['四縣音', 1],
-  ['海陸音', 2],
-  ['大埔音', 3],
-  ['饒平音', 4],
-  ['詔安音', 5],
-  ['南四縣', 6]
-]
+import { accent } from '@/assets/accent';
 
-const table_lookup  : _.Dictionary<number> = _.fromPairs(accents)
-const table_reverse : _.Dictionary<string> = _.chain(accents)
-  .map(([k, v]) => [v, k])
+const table_lookup  : _.Dictionary<number> = _.chain(accent)
+  .map(({ id, name }) => [name, id])
+  .fromPairs()
+  .value()
+const table_reverse : _.Dictionary<string> = _.chain(accent)
+  .map(({ id, name }) => [id, name])
   .fromPairs()
   .value()
 
