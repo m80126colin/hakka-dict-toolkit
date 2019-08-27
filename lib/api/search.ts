@@ -1,5 +1,5 @@
-import * as _       from 'lodash';
-import * as request from 'request-promise';
+import * as _ from 'lodash';
+import axios  from 'axios';
 
 import * as filter        from '../filter';
 import * as extracter     from '../extracter';
@@ -16,17 +16,16 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../types';
  * @returns {(Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]>)} a promise with
  *   list of result
  */
-const search = (str : string, options : HakkaDictOption) : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
-  return request({
-      method: 'GET',
-      uri: util.query.search(str),
-      strictSSL: false
-    })
-    .then(filter.image)
-    .then(filter.character)
-    .then(extracter.search)
-    .then(formatter.search)
-    .then(result => postprocessor.search(result, options))
+const search = (str : string, options : HakkaDictOption)
+  : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
+    const url = util.query.search(str)
+    return axios.get<string>(url)
+      .then(({ data }) => data)
+      .then(filter.image)
+      .then(filter.character)
+      .then(extracter.search)
+      .then(formatter.search)
+      .then(result => postprocessor.search(result, options))
 }
 
 export default search

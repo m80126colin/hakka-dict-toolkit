@@ -1,5 +1,5 @@
-import * as _       from 'lodash';
-import * as request from 'request-promise';
+import * as _  from 'lodash';
+import axios   from 'axios';
 
 import * as filter        from '../filter';
 import * as extracter     from '../extracter';
@@ -13,20 +13,18 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption, HakkaDictExtract }
  *
  * @param {number} index index of entry
  * @returns a promise with either a word or a character
- */
+ *//**/
 const entry = (index : number, options : HakkaDictOption) : Promise<
   HakkaDictProtoType.Char | HakkaDictEntry.Char |
   HakkaDictProtoType.Word | HakkaDictEntry.Word> => {
-    return request({
-        method: 'GET',
-        uri: util.query.entry(index),
-        strictSSL: false
-      })
+    const url = util.query.entry(index)
+    return axios.get<string>(url)
+      .then(({ data }) => data)
       .then(filter.image)
       .then(filter.character)
       .then(extracter.entry)
       .then(exts   => formatter.entry(index, exts))
       .then(result => postprocessor.entry(result, options))
-  }
+}
 
 export default entry

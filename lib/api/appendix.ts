@@ -1,5 +1,5 @@
-import * as _       from 'lodash';
-import * as request from 'request-promise';
+import * as _  from 'lodash';
+import axios   from 'axios';
 
 import * as filter        from '../filter';
 import * as extracter     from '../extracter';
@@ -17,17 +17,16 @@ import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../types';
  * @returns {(Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]>)} a promise
  *   with a accent list
  */
-const appendix = (index : string, type : number, options : HakkaDictOption) : Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]> => {
-  return request({
-      method: 'GET',
-      uri: util.query.appendix(index, type),
-      strictSSL: false
-    })
-    .then(filter.image)
-    .then(filter.character)
-    .then(extracter.appendix)
-    .then(formatter.appendix)
-    .then(result => postprocessor.appendix(result, options))
+const appendix = (index : string, type : number, options : HakkaDictOption)
+  : Promise<(HakkaDictProtoType.AppSound | HakkaDictEntry.AppSound)[]> => {
+    const url = util.query.appendix(index, type)
+    return axios.get<string>(url)
+      .then(({ data }) => data)
+      .then(filter.image)
+      .then(filter.character)
+      .then(extracter.appendix)
+      .then(formatter.appendix)
+      .then(result => postprocessor.appendix(result, options))
 }
 
 export default appendix

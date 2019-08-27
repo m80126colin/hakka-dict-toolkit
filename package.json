@@ -7,8 +7,9 @@
   "author": "Hsu Karinsu<m80126colin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run clean & tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prebuild": "yarn clean",
+    "build": "npx babel --extensions \".ts\" lib/ --out-dir dist/ && tsc"
   },
   "bugs": {
     "url": "https://github.com/m80126colin/hakka-dict-toolkit/issues"
@@ -24,11 +25,16 @@
   "dependencies": {
     "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.2",
-    "lodash": "^4.17.15",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-classes": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.5.5",
     "@types/cheerio": "^0.22.9",
     "@types/lodash": "^4.14.137",
     "@types/node": "^10.9.2",
