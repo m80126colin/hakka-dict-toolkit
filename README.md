@@ -129,7 +129,7 @@ Other Formats
 
 * `type`: type of dialect, see [Hakka Dialects](#hakka-dialects)
 * `phonetic`: spelled by Hakka-ngi Phin-Yim Fong-On, see [Romanisation](#romanisation)
-* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](literary-readings-and-colloquial-readings-文白異讀)
+* `vunpag`: either `'文讀'` or `'白讀'`, see [Literary Readings and Colloquial Readings](#literary-readings-and-colloquial-readings-文白異讀)
 * `media`: an uri to the sound of pronounciation
 
 ### Entry.ItemSound
