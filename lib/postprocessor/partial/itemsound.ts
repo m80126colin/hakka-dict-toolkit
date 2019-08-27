@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 
 import * as util from '../../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../../types';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictionaryToolkit } from '../../types';
 
-const postprocessor = (sound : HakkaDictProtoType.ItemSound, options : HakkaDictOption) : HakkaDictProtoType.ItemSound | HakkaDictEntry.ItemSound => {
+const postprocessor = (sound : HakkaDictProtoType.ItemSound, options : HakkaDictionaryToolkit.Option) : HakkaDictProtoType.ItemSound | HakkaDictEntry.ItemSound => {
   if (!options.verbose)
     return sound
   let s = {

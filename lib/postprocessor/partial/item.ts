@@ -1,7 +1,7 @@
 import * as util from '../../util';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '../../types';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictionaryToolkit } from '../../types';
 
-const postprocessor = (item : HakkaDictProtoType.Item, options : HakkaDictOption) : HakkaDictProtoType.Item | HakkaDictEntry.Item => {
+const postprocessor = (item : HakkaDictProtoType.Item, options : HakkaDictionaryToolkit.Option) : HakkaDictProtoType.Item | HakkaDictEntry.Item => {
   if (!options.verbose)
     return item
   if (!item.index)

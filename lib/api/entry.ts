@@ -6,15 +6,15 @@ import * as filter        from '@/filter';
 import * as extracter     from '@/extracter';
 import * as formatter     from '@/formatter';
 import * as postprocessor from '@/postprocessor';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictionaryToolkit } from '@/types';
 /**
  * Provide access to the entry of MOE Hakka Dictionary by index and returns a promise.
  *
  * @param {number} index index of entry
- * @param {HakkaDictOption} options @see HakkaDictOption
+ * @param {HakkaDictionaryToolkit.Option} options @see HakkaDictionaryToolkit.Option
  * @returns a promise with either a word or a character
  */
-const entry = (index : number, options : HakkaDictOption = {}) : Promise<
+const entry = (index : number, options : HakkaDictionaryToolkit.Option = {}) : Promise<
   HakkaDictProtoType.Char | HakkaDictEntry.Char |
   HakkaDictProtoType.Word | HakkaDictEntry.Word> => {
     const url = util.query.entry(index)

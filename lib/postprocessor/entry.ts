@@ -2,13 +2,13 @@ import * as _       from 'lodash';
 
 import * as util    from '../util';
 import * as partial from './partial';
-import { HakkaDictProtoType, HakkaDictOption, HakkaDictEntry } from '../types';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictionaryToolkit } from '../types';
 
-const options_default : HakkaDictOption = {
+const options_default : HakkaDictionaryToolkit.Option = {
   verbose: true
 }
 
-const postprocessor = (result : HakkaDictProtoType.Char | HakkaDictProtoType.Word, options : HakkaDictOption) :
+const postprocessor = (result : HakkaDictProtoType.Char | HakkaDictProtoType.Word, options : HakkaDictionaryToolkit.Option) :
   HakkaDictProtoType.Char | HakkaDictEntry.Char | HakkaDictProtoType.Word | HakkaDictEntry.Word => {
     const opt = _.defaults(options, options_default)
     if (!opt.verbose)

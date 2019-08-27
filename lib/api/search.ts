@@ -6,16 +6,16 @@ import * as filter        from '@/filter';
 import * as extracter     from '@/extracter';
 import * as formatter     from '@/formatter';
 import * as postprocessor from '@/postprocessor';
-import { HakkaDictProtoType, HakkaDictEntry, HakkaDictOption } from '@/types';
+import { HakkaDictProtoType, HakkaDictEntry, HakkaDictionaryToolkit } from '@/types';
 /**
  * Search to MOE Hakka Dictionary.
  *
  * @param {string} str query string
- * @param {HakkaDictOption} options @see HakkaDictOption
+ * @param {HakkaDictionaryToolkit.Option} options @see HakkaDictionaryToolkit.Option
  * @returns {(Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]>)} a promise with
  *   list of result
  */
-const search = (str : string, options : HakkaDictOption = {})
+const search = (str : string, options : HakkaDictionaryToolkit.Option = {})
   : Promise<(HakkaDictProtoType.Item | HakkaDictEntry.Item)[]> => {
     const url = util.query.search(str)
     return axios.get<string>(url)
